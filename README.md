@@ -1,5 +1,13 @@
 ## Local Development
 
+### Dev environment setup
+
+Using Visual Studio Code.
+
+- [Install typescript hinting for CSS modules](https://puruvj.dev/blog/css-modules-typescript-intellisense)
+
+### Running Locally
+
 ```bash
 npm i
 npm run dev

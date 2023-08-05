@@ -12,14 +12,34 @@ import {
 
 import Image from "next/image";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+
+  // Window resize handler
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+      setWindowHeight(window.innerHeight);
+    };
+    window.addEventListener("resize", handleWindowResize);
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <main className={styles.main}>
-      <h1>Amit Kumar</h1>
+      <h1 style={{ fontWeight: 400 }}>Amit Kumar</h1>
 
-      <div>
-        <HexGrid width={1200} height={800} viewBox="-50 -50 100 100">
+      <div className={styles.gridContainer}>
+        <HexGrid
+          width={windowWidth}
+          height={windowHeight}
+          viewBox="-50 -50 100 100"
+        >
           <Layout size={{ x: 5, y: 5 }} spacing={1.1} origin={{ x: 0, y: 0 }}>
             <Hexagon q={0} r={0} s={0} />
             <Hexagon q={0} r={1} s={0} />

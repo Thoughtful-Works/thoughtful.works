@@ -20,5 +20,8 @@
     "react-dom": "18.2.0",
     "react-hexgrid": "^2.0.0-beta.4",
     "typescript": "5.1.6"
+  },
+  "devDependencies": {
+    "typescript-plugin-css-modules": "^5.0.1"
   }
 }
