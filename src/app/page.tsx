@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <h1 style={{ fontWeight: 400 }}>Amit Kumar</h1>
+      <h1 style={{ fontWeight: 400, fontSize: "4em" }}>Amit Kumar</h1>
 
       <div className={styles.gridContainer}>
         <HexGrid
@@ -40,12 +40,17 @@ export default function Home() {
           height={windowHeight}
           viewBox="-50 -50 100 100"
         >
-          <Layout size={{ x: 5, y: 5 }} spacing={1.1} origin={{ x: 0, y: 0 }}>
-            <Hexagon q={0} r={0} s={0} />
-            <Hexagon q={0} r={1} s={0} />
-            <Hexagon q={0} r={2} s={0} />
-            <Hexagon q={0} r={3} s={0} />
-            <Hexagon q={0} r={4} s={0} />
+          <Layout
+            size={{ x: 10, y: 10 }}
+            spacing={1.04}
+            origin={{ x: 0, y: 0 }}
+            flat={false}
+          >
+            <Hexagon q={0} r={0} s={0} className={styles.tile} />
+            <Hexagon q={0} r={-1} s={0} className={styles.tile} />
+            <Hexagon q={0} r={1} s={0} className={styles.tile} />
+            <Hexagon q={-1} r={0} s={0} className={styles.tile} />
+            <Hexagon q={1} r={0} s={0} className={styles.tile} />
           </Layout>
         </HexGrid>
       </div>

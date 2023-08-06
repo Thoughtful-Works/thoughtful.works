@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 4rem;
   min-height: 100vh;
 }
 
@@ -13,4 +13,8 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.tile {
+  fill: rgb(var(--tile-rgb));
 }
