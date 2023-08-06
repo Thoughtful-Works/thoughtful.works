@@ -5,35 +5,56 @@ import {
   Layout,
   Hexagon,
   Text,
-  Pattern,
-  Path,
   Hex,
   GridGenerator,
+  HexUtils,
 } from "react-hexgrid";
 import { Animate, NodeGroup } from "react-move";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
 
-const baseHexGrid = GridGenerator.spiral(new Hex(0, 0, 0), 5); // 91 cells
-console.log(baseHexGrid);
+const originHex = new Hex(0, 0, 0);
+const tiles: Array<Tile> = []; //[originHex];
 
-const offeringsData = [
+export interface Offering {
+  title: string;
+}
+
+export interface Tile {
+  hex: Hex;
+  nodeLevel: 0 | 1;
+  data: Offering | any;
+}
+
+const offeringsData: Array<Offering> = [
   {
-    title: "Web Software Architect",
+    title: "1", //"Web Software Architect",
   },
   {
-    title: "Engineering Leader",
+    title: "2", //"Engineering Leader",
   },
   {
-    title: "Entrepreneur",
+    title: "3", //"Entrepreneur",
   },
   {
-    title: "Children's Book Author",
+    title: "4",
+  },
+  {
+    title: "5",
+  },
+  {
+    title: "6",
   },
 ];
 
-const experienceData = [];
+offeringsData.forEach((item, index) => {
+  tiles.push({
+    hex: HexUtils.neighbour(originHex, index),
+    nodeLevel: 0,
+    data: item,
+  });
+});
 
 export default function Home() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -72,9 +93,9 @@ export default function Home() {
               keyAccessor={(item) => item.title}
               start={(item, index) => {
                 return {
-                  q: baseHexGrid[index].q,
-                  r: baseHexGrid[index].r,
-                  s: baseHexGrid[index].s,
+                  q: tiles[index].hex.q,
+                  r: tiles[index].hex.r,
+                  s: tiles[index].hex.s,
                 };
               }}
             >

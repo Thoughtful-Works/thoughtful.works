@@ -27,3 +27,4 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 - [react-move](https://github.com/sghall/react-move) for animations
 - [Hex map geometry and algorithms](https://www.redblobgames.com/grids/hexagons/)
 - [Google Fonts Pair Finder](https://10015.io/tools/google-fonts-pair-finder)
+- [LinkedIn to JSON](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/)
