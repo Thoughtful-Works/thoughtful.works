@@ -17,4 +17,10 @@
 
 .tile {
   fill: rgb(var(--tile-rgb));
+  cursor: pointer;
+}
+
+.tile text {
+  font-size: 1.5px;
+  fill: rgb(var(--tile-text-rgb));
 }

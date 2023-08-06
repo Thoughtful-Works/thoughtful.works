@@ -46,7 +46,20 @@ export default function Home() {
             origin={{ x: 0, y: 0 }}
             flat={false}
           >
-            <Hexagon q={0} r={0} s={0} className={styles.tile} />
+            <Hexagon
+              q={0}
+              r={0}
+              s={0}
+              className={styles.tile}
+              onPointerOver={(e) => {
+                e.currentTarget.style.fill = "red";
+              }}
+              onPointerOut={(e) => {
+                e.currentTarget.style.fill = "";
+              }}
+            >
+              <Text>Web Software Architect</Text>
+            </Hexagon>
             <Hexagon q={0} r={-1} s={0} className={styles.tile} />
             <Hexagon q={0} r={1} s={0} className={styles.tile} />
             <Hexagon q={-1} r={0} s={0} className={styles.tile} />
