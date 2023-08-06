@@ -13,6 +13,7 @@ import { Animate, NodeGroup } from "react-move";
 import Image from "next/image";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
+import { HexDirection, getRingNeighbor } from "@/utils";
 
 const originHex = new Hex(0, 0, 0);
 const tiles: Array<Tile> = []; //[originHex];
@@ -48,9 +49,10 @@ const offeringsData: Array<Offering> = [
   },
 ];
 
+const startDirection = HexDirection.UpLeft;
 offeringsData.forEach((item, index) => {
   tiles.push({
-    hex: HexUtils.neighbour(originHex, index),
+    hex: getRingNeighbor(originHex, index),
     nodeLevel: 0,
     data: item,
   });

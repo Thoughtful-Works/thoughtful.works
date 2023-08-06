@@ -1,18 +1,10 @@
 import { GridGenerator, Hex, HexUtils } from "react-hexgrid";
-
-export enum Direction {
-  UpLeft = 1,
-  UpRight = 2,
-  Right = 3,
-  DownRight = 4,
-  DownLeft = 5,
-  Left = 6,
-}
+import { HexDirection } from "./utils";
 
 export const ring = (
   center: Hex,
   mapRadius: number,
-  startingDirection: Direction = 4
+  startingDirection: HexDirection = HexDirection.DownLeft
 ): Hex[] => {
   let hexas: Hex[] = [];
   let hex = HexUtils.add(
