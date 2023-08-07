@@ -1,8 +1,8 @@
 // Reference: https://www.redblobgames.com/grids/hexagons/
 // Geometry based on "pointy" hexagons
 
-import { CustomHexDirection } from "@/utils";
 import { CSSProperties } from "react";
+import { CustomHexDirection } from "./hexTypes";
 
 export type PetalTransform =
   | CSSProperties

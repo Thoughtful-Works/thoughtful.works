@@ -1,5 +1,5 @@
-import { GridGenerator, Hex, HexUtils } from "react-hexgrid";
-import { DefaultHexDirection } from "./utils";
+import { Hex, HexUtils } from "react-hexgrid";
+import { DefaultHexDirection } from "./hexTypes";
 
 export const ring = (
   center: Hex,

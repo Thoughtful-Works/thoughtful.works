@@ -1,25 +1,11 @@
 import wrap from "wrap-around";
 
 import { Hex, HexUtils } from "react-hexgrid";
-import { interpolate, interpolateTransformSvg } from "d3-interpolate";
-
-export enum DefaultHexDirection {
-  Right,
-  UpRight,
-  UpLeft,
-  Left,
-  DownLeft,
-  DownRight,
-}
-export enum CustomHexDirection {
-  UpLeft,
-  UpRight,
-  Right,
-  DownRight,
-  DownLeft,
-  Left,
-}
-export type RingProgressDirection = "clockwise" | "counterclockwise";
+import { interpolate } from "d3-interpolate";
+import {
+  DefaultHexDirection,
+  RingProgressDirection,
+} from "./components/hexTypes";
 
 export const RING_START_DIRECTION = DefaultHexDirection.UpLeft;
 export const RING_PROGRESS_DIRECTION: RingProgressDirection = "clockwise";
