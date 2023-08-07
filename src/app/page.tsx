@@ -1,7 +1,7 @@
 "use client";
 
 import CustomHexagon from "@/components/CustomHexagon";
-import { DefaultHexDirection, getRingNeighbor } from "@/utils";
+import { DefaultHexDirection, getRingNeighbor, d3Interpolation } from "@/utils";
 import { easeQuadIn } from "d3-ease";
 import { CSSProperties, useEffect, useState } from "react";
 import { Hex, HexGrid, Layout, Text } from "react-hexgrid";
@@ -105,6 +105,7 @@ export default function Home() {
                   timing: { duration: 500, ease: easeQuadIn },
                 };
               }}
+              interpolation={d3Interpolation}
             >
               {(state) => {
                 return (
@@ -145,7 +146,7 @@ export default function Home() {
                           q: [tiles[index].hex.q],
                           r: [tiles[index].hex.r],
                           s: [tiles[index].hex.s],
-                          opacity: [0.4],
+                          opacity: [1],
                           timing: { duration: 500, ease: easeQuadIn },
                         };
                       }}
@@ -158,6 +159,7 @@ export default function Home() {
                           timing: { duration: 500, ease: easeQuadIn },
                         };
                       }}
+                      interpolation={d3Interpolation}
                     >
                       {(nodes) => {
                         return (

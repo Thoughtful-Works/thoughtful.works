@@ -1,6 +1,7 @@
 import wrap from "wrap-around";
 
 import { Hex, HexUtils } from "react-hexgrid";
+import { interpolate, interpolateTransformSvg } from "d3-interpolate";
 
 export enum DefaultHexDirection {
   Right,
@@ -28,4 +29,17 @@ export const getRingNeighbor = (originHex: Hex, index: number): Hex => {
     return HexUtils.neighbour(originHex, wrap(6, RING_START_DIRECTION - index));
   }
   return HexUtils.neighbour(originHex, wrap(6, RING_START_DIRECTION + index));
+};
+
+export const d3Interpolation = (
+  begValue: any,
+  endValue: any,
+  attr: string | undefined
+) => {
+  // pass as prop
+  if (attr === "transform") {
+    return interpolateTransformSvg(begValue, endValue);
+  }
+
+  return interpolate(begValue, endValue);
 };
