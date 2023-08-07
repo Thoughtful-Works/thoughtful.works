@@ -2,7 +2,7 @@ import wrap from "wrap-around";
 
 import { Hex, HexUtils } from "react-hexgrid";
 
-export enum HexDirection {
+export enum DefaultHexDirection {
   Right,
   UpRight,
   UpLeft,
@@ -10,9 +10,17 @@ export enum HexDirection {
   DownLeft,
   DownRight,
 }
+export enum CustomHexDirection {
+  UpLeft,
+  UpRight,
+  Right,
+  DownRight,
+  DownLeft,
+  Left,
+}
 export type RingProgressDirection = "clockwise" | "counterclockwise";
 
-export const RING_START_DIRECTION = HexDirection.UpLeft;
+export const RING_START_DIRECTION = DefaultHexDirection.UpLeft;
 export const RING_PROGRESS_DIRECTION: RingProgressDirection = "clockwise";
 
 export const getRingNeighbor = (originHex: Hex, index: number): Hex => {

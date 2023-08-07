@@ -23,6 +23,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## References
 
+- ![Hex tile width/height ratios](docs/hex-tile-spacing.png)
 - [react-hexgrid](https://github.com/Hellenic/react-hexgrid) for hexagon tiles
 - [react-move](https://github.com/sghall/react-move) for animations
 - [Hex map geometry and algorithms](https://www.redblobgames.com/grids/hexagons/)

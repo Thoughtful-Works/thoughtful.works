@@ -1,12 +1,13 @@
 "use client";
 
 import CustomHexagon from "@/components/CustomHexagon";
-import { getRingNeighbor } from "@/utils";
+import { DefaultHexDirection, getRingNeighbor } from "@/utils";
 import { easeQuadIn } from "d3-ease";
 import { CSSProperties, useEffect, useState } from "react";
 import { Hex, HexGrid, Layout, Text } from "react-hexgrid";
 import { Animate, NodeGroup } from "react-move";
 import styles from "./page.module.css";
+import { FlowerTransforms } from "@/components/HexTransforms";
 
 const originHex = new Hex(0, 0, 0);
 const tiles: Array<Tile> = [];
@@ -82,7 +83,7 @@ export default function Home() {
         >
           <Layout
             size={{ x: 10, y: 10 }}
-            spacing={1.04}
+            spacing={1}
             origin={{ x: 0, y: 0 }}
             flat={false}
           >
@@ -132,38 +133,74 @@ export default function Home() {
                           q: tiles[index].hex.q,
                           r: tiles[index].hex.r,
                           s: tiles[index].hex.s,
+                          opacity: 0.1,
+                          flowerTransforms:
+                            FlowerTransforms.closed[
+                              index as DefaultHexDirection
+                            ],
+                        };
+                      }}
+                      enter={(item, index) => {
+                        return {
+                          q: [tiles[index].hex.q],
+                          r: [tiles[index].hex.r],
+                          s: [tiles[index].hex.s],
+                          opacity: [0.4],
+                          timing: { duration: 500, ease: easeQuadIn },
+                        };
+                      }}
+                      update={(item, index) => {
+                        return {
+                          q: [tiles[index].hex.q],
+                          r: [tiles[index].hex.r],
+                          s: [tiles[index].hex.s],
+                          opacity: [0.4],
+                          timing: { duration: 500, ease: easeQuadIn },
                         };
                       }}
                     >
                       {(nodes) => {
                         return (
                           <g>
-                            {nodes.map(({ key, data, state: { q, r, s } }) => {
-                              const contentStyle: CSSProperties = {
-                                transform: `perspective(1000px) rotateY(180deg)`,
-                                transformOrigin: `right center`,
-                                transformBox: `fill-box`,
-                              };
-                              return (
-                                // Hexagon q, r, s props accept decimals, which means we should be able to interpolate them with an animation library
-                                <CustomHexagon
-                                  key={key}
-                                  q={q}
-                                  r={r}
-                                  s={s}
-                                  className={styles.tile}
-                                  cellStyle={contentStyle}
-                                  onPointerOver={(e) => {
-                                    e.currentTarget.style.fill = "red";
-                                  }}
-                                  onPointerOut={(e) => {
-                                    e.currentTarget.style.fill = "";
-                                  }}
-                                >
-                                  <Text>{data.title}</Text>
-                                </CustomHexagon>
-                              );
-                            })}
+                            {nodes.map(
+                              ({
+                                key,
+                                data,
+                                state: {
+                                  q,
+                                  r,
+                                  s,
+                                  opacity,
+                                  flowerTransforms = {},
+                                },
+                              }) => {
+                                const contentStyle: CSSProperties = {
+                                  ...flowerTransforms,
+                                };
+                                return (
+                                  // Hexagon q, r, s props accept decimals, which means we should be able to interpolate them with an animation library
+                                  <CustomHexagon
+                                    key={key}
+                                    q={q}
+                                    r={r}
+                                    s={s}
+                                    className={styles.tile}
+                                    style={{
+                                      opacity,
+                                    }}
+                                    cellStyle={contentStyle}
+                                    onPointerOver={(e) => {
+                                      e.currentTarget.style.fill = "red";
+                                    }}
+                                    onPointerOut={(e) => {
+                                      e.currentTarget.style.fill = "";
+                                    }}
+                                  >
+                                    <Text>{data.title}</Text>
+                                  </CustomHexagon>
+                                );
+                              }
+                            )}
                           </g>
                         );
                       }}
