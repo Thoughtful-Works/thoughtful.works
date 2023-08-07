@@ -1,7 +1,7 @@
 "use client";
 
 import CustomHexagon from "@/components/CustomHexagon";
-import { DefaultHexDirection, getRingNeighbor, d3Interpolation } from "@/utils";
+import { getRingNeighbor, d3Interpolation, CustomHexDirection } from "@/utils";
 import { easeQuadIn } from "d3-ease";
 import { CSSProperties, useEffect, useState } from "react";
 import { Hex, HexGrid, Layout, Text } from "react-hexgrid";
@@ -137,7 +137,7 @@ export default function Home() {
                           opacity: 0.1,
                           flowerTransforms:
                             FlowerTransforms.closed[
-                              index as DefaultHexDirection
+                              index as CustomHexDirection
                             ],
                         };
                       }}
@@ -147,7 +147,9 @@ export default function Home() {
                           r: [tiles[index].hex.r],
                           s: [tiles[index].hex.s],
                           opacity: [1],
-                          timing: { duration: 500, ease: easeQuadIn },
+                          flowerTransforms:
+                            FlowerTransforms.enter[index as CustomHexDirection],
+                          timing: { duration: 5000, ease: easeQuadIn },
                         };
                       }}
                       update={(item, index) => {

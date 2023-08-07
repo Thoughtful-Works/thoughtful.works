@@ -116,7 +116,7 @@ export function CustomHexagon(
         }
       }}
     >
-      <g className="hexagon" style={cellStyle}>
+      <g className="hexagon" style={{ ...cellStyle, transformBox: "fill-box" }}>
         <polygon points={points} fill={fillId} />
         {children}
       </g>

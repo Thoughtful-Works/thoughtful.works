@@ -4,11 +4,14 @@
 import { CustomHexDirection } from "@/utils";
 import { CSSProperties } from "react";
 
-export const baseStyles: CSSProperties = {
-  transformBox: "fill-box",
-};
-
-export type PetalTransform = CSSProperties;
+export type PetalTransform =
+  | CSSProperties
+  | {
+      [key in "transform" | "transformOrigin"]:
+        | string
+        | number
+        | Array<string | number>;
+    };
 export type FlowerTransform = {
   [key in CustomHexDirection]: PetalTransform;
 };
@@ -18,33 +21,53 @@ export const FlowerTransforms: {
 } = {
   closed: {
     [CustomHexDirection.UpLeft]: {
-      ...baseStyles,
       transform: `perspective(1000px) rotate3d(-1.75, 1, 0, 180deg)`,
       transformOrigin: `75% 87.5%`,
     },
     [CustomHexDirection.UpRight]: {
-      ...baseStyles,
       transform: `perspective(1000px) rotate3d(1.75, 1, 0, 180deg)`,
       transformOrigin: `25% 87.5%`,
     },
     [CustomHexDirection.Right]: {
-      ...baseStyles,
       transform: `perspective(1000px) rotate3d(0, 1, 0, 180deg)`,
       transformOrigin: `0 50%`,
     },
     [CustomHexDirection.DownRight]: {
-      ...baseStyles,
       transform: `perspective(1000px) rotate3d(1.75, -1, 0, 180deg)`,
       transformOrigin: `25% 12.5%`,
     },
     [CustomHexDirection.DownLeft]: {
-      ...baseStyles,
       transform: `perspective(1000px) rotate3d(-1.75, -1, 0, 180deg)`,
       transformOrigin: `75% 12.5%`,
     },
     [CustomHexDirection.Left]: {
-      ...baseStyles,
       transform: `perspective(1000px) rotate3d(0, -1, 0, 180deg)`,
+      transformOrigin: `100% 50%`,
+    },
+  },
+  enter: {
+    [CustomHexDirection.UpLeft]: {
+      transform: [`perspective(1000px) rotate3d(0, 0, 0, 0deg)`],
+      transformOrigin: `75% 87.5%`,
+    },
+    [CustomHexDirection.UpRight]: {
+      transform: [`perspective(1000px) rotate3d(0, 0, 0, 0deg)`],
+      transformOrigin: `25% 87.5%`,
+    },
+    [CustomHexDirection.Right]: {
+      transform: [`perspective(1000px) rotate3d(0, 0, 0, 0deg)`],
+      transformOrigin: `0 50%`,
+    },
+    [CustomHexDirection.DownRight]: {
+      transform: [`perspective(1000px) rotate3d(0, 0, 0, 0deg)`],
+      transformOrigin: `25% 12.5%`,
+    },
+    [CustomHexDirection.DownLeft]: {
+      transform: [`perspective(1000px) rotate3d(0, 0, 0, 0deg)`],
+      transformOrigin: `75% 12.5%`,
+    },
+    [CustomHexDirection.Left]: {
+      transform: [`perspective(1000px) rotate3d(0, 0, 0, 0deg)`],
       transformOrigin: `100% 50%`,
     },
   },

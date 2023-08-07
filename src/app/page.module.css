@@ -21,7 +21,6 @@
 }
 
 .tileContent {
-  transform-box: fill-box;
   width: 100%;
   height: 100%;
 }

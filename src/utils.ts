@@ -36,10 +36,10 @@ export const d3Interpolation = (
   endValue: any,
   attr: string | undefined
 ) => {
-  // pass as prop
-  if (attr === "transform") {
-    return interpolateTransformSvg(begValue, endValue);
-  }
+  // This condition is only needed if we're assigning `transform` attribute on the SVG element, which we're not (we're setting CSS attribute instead)
+  // if (attr === "transform") {
+  //   return interpolateTransformSvg(begValue, endValue);
+  // }
 
   return interpolate(begValue, endValue);
 };
