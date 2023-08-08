@@ -7,7 +7,12 @@ import {
   Tile,
 } from "@/components";
 import { d3Interpolation, getRingNeighbor } from "@/utils";
-import { easeCircleOut, easeQuadOut } from "d3-ease";
+import {
+  easeCircleIn,
+  easeCircleInOut,
+  easeCircleOut,
+  easeQuadOut,
+} from "d3-ease";
 import { CSSProperties, useState } from "react";
 import { Hex, Text } from "react-hexgrid";
 import { Animate, NodeGroup } from "react-move";
@@ -70,7 +75,7 @@ export const HexFlower = ({
           q: [node.q],
           r: [node.r],
           s: [node.s],
-          opacity: isHovered ? [1] : [0.2],
+          opacity: isHovered ? [1] : [0.4],
           timing: { duration: 500, ease: easeCircleOut },
         };
       }}
@@ -99,7 +104,7 @@ export const HexFlower = ({
                   s: item.hex.s,
                   opacity: 0,
                   flowerTransforms:
-                    FlowerTransforms.closed[index as CustomHexDirection],
+                    FlowerTransforms.start[index as CustomHexDirection],
                 } as AnimationState;
               }}
               enter={(item, index) => {
@@ -124,6 +129,21 @@ export const HexFlower = ({
                   s: [item.hex.s],
                   opacity: [0.4],
                   timing: { duration: 500, ease: easeCircleOut },
+                } as AnimationState;
+              }}
+              leave={(item, index) => {
+                return {
+                  q: [item.hex.q],
+                  r: [item.hex.r],
+                  s: [item.hex.s],
+                  opacity: [0],
+                  flowerTransforms:
+                    FlowerTransforms.leave[index as CustomHexDirection],
+                  timing: {
+                    duration: 750,
+                    delay: index * 75,
+                    ease: easeCircleIn,
+                  },
                 } as AnimationState;
               }}
               interpolation={d3Interpolation}
