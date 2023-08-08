@@ -25,8 +25,6 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <h1 style={{ fontWeight: 400, fontSize: "4em" }}>Amit Kumar</h1>
-
       <div className={styles.gridContainer}>
         <HexGrid
           width={windowWidth}
