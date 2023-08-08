@@ -83,7 +83,7 @@ export const HexFlower = ({
           r: [node.r],
           s: [node.s],
           opacity: isHovered ? [1] : [0.4],
-          timing: { duration: 1000, ease: easeCircleIn },
+          timing: { duration: 500, ease: easeCircleIn },
         };
       }}
       interpolation={d3Interpolation}
@@ -127,7 +127,7 @@ export const HexFlower = ({
                     FlowerTransforms.enter[index as CustomHexDirection],
                   timing: {
                     duration: 750,
-                    delay: easedDelayFactor * (750 / 2),
+                    // delay: easedDelayFactor * (750 / 2),
                     ease: easeSinOut,
                   },
                 } as AnimationState;
@@ -154,7 +154,7 @@ export const HexFlower = ({
                     FlowerTransforms.leave[index as CustomHexDirection],
                   timing: {
                     duration: 750,
-                    delay: easedDelayFactor * (750 / 3),
+                    // delay: easedDelayFactor * (750 / 3),
                     ease: easeSinIn,
                   },
                 } as AnimationState;

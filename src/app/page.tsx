@@ -6,8 +6,8 @@ import { Hex, HexGrid, Layout } from "react-hexgrid";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const [windowWidth, setWindowWidth] = useState<number>();
+  const [windowHeight, setWindowHeight] = useState<number>();
   const [originHex, setOriginHex] = useState(new Hex(0, 0, 0));
   const [data, setData] = useState(sampleData);
 
@@ -17,6 +17,7 @@ export default function Home() {
       setWindowWidth(window.innerWidth);
       setWindowHeight(window.innerHeight);
     };
+    handleWindowResize();
     window.addEventListener("resize", handleWindowResize);
     return () => {
       window.removeEventListener("resize", handleWindowResize);
