@@ -127,7 +127,7 @@ export const HexFlower = ({
                     FlowerTransforms.enter[index as CustomHexDirection],
                   timing: {
                     duration: 750,
-                    // delay: easedDelayFactor * (750 / 2),
+                    delay: easedDelayFactor * (750 / 3),
                     ease: easeSinOut,
                   },
                 } as AnimationState;
