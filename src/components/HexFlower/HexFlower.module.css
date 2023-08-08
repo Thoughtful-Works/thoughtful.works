@@ -1,5 +1,5 @@
 .tile {
-  fill: rgb(var(--tile-rgb));
+  /* fill: rgb(var(--tile-rgb)); */
   cursor: pointer;
 }
 

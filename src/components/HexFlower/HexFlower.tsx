@@ -11,13 +11,20 @@ import {
   easeCircleIn,
   easeCircleInOut,
   easeCircleOut,
+  easeCubicIn,
+  easeCubicOut,
+  easeQuadInOut,
   easeQuadOut,
+  easeSinIn,
+  easeSinInOut,
+  easeSinOut,
 } from "d3-ease";
 import { CSSProperties, useState } from "react";
 import { Hex, Text } from "react-hexgrid";
 import { Animate, NodeGroup } from "react-move";
 import styles from "./HexFlower.module.css";
 import { useHover } from "react-aria";
+import { schemeSet2, interpolateSinebow } from "d3-scale-chromatic";
 
 export interface HexFlowerProps {
   data: DataNode;
@@ -76,7 +83,7 @@ export const HexFlower = ({
           r: [node.r],
           s: [node.s],
           opacity: isHovered ? [1] : [0.4],
-          timing: { duration: 500, ease: easeCircleOut },
+          timing: { duration: 1000, ease: easeCircleIn },
         };
       }}
       interpolation={d3Interpolation}
@@ -108,6 +115,9 @@ export const HexFlower = ({
                 } as AnimationState;
               }}
               enter={(item, index) => {
+                const easedDelayFactor = easeSinOut(
+                  index / (children.length - 1)
+                );
                 return {
                   q: [item.hex.q],
                   r: [item.hex.r],
@@ -116,9 +126,9 @@ export const HexFlower = ({
                   flowerTransforms:
                     FlowerTransforms.enter[index as CustomHexDirection],
                   timing: {
-                    duration: 1000,
-                    delay: index * 100,
-                    ease: easeCircleOut,
+                    duration: 750,
+                    delay: easedDelayFactor * (750 / 2),
+                    ease: easeSinOut,
                   },
                 } as AnimationState;
               }}
@@ -128,10 +138,13 @@ export const HexFlower = ({
                   r: [item.hex.r],
                   s: [item.hex.s],
                   opacity: [0.4],
-                  timing: { duration: 500, ease: easeCircleOut },
+                  timing: { duration: 500, ease: easeSinOut },
                 } as AnimationState;
               }}
               leave={(item, index) => {
+                const easedDelayFactor = easeSinIn(
+                  index / (children.length - 1)
+                );
                 return {
                   q: [item.hex.q],
                   r: [item.hex.r],
@@ -141,8 +154,8 @@ export const HexFlower = ({
                     FlowerTransforms.leave[index as CustomHexDirection],
                   timing: {
                     duration: 750,
-                    delay: index * 75,
-                    ease: easeCircleIn,
+                    delay: easedDelayFactor * (750 / 3),
+                    ease: easeSinIn,
                   },
                 } as AnimationState;
               }}
@@ -152,11 +165,14 @@ export const HexFlower = ({
                 return (
                   <g key={1}>
                     {nodes.map(
-                      ({
-                        key,
-                        data,
-                        state: { q, r, s, opacity, flowerTransforms = {} },
-                      }) => {
+                      (
+                        {
+                          key,
+                          data,
+                          state: { q, r, s, opacity, flowerTransforms = {} },
+                        },
+                        index
+                      ) => {
                         const contentStyle: CSSProperties = {
                           ...flowerTransforms,
                         };
@@ -170,14 +186,9 @@ export const HexFlower = ({
                             className={styles.tile}
                             style={{
                               opacity,
+                              fill: schemeSet2[index],
                             }}
                             cellStyle={contentStyle}
-                            onPointerOver={(e) => {
-                              e.currentTarget.style.fill = "red";
-                            }}
-                            onPointerOut={(e) => {
-                              e.currentTarget.style.fill = "";
-                            }}
                           >
                             <Text>{data.title}</Text>
                           </CustomHexagon>
