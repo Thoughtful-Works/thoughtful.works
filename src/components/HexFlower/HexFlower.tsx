@@ -82,7 +82,7 @@ export const HexFlower = ({
           q: [node.q],
           r: [node.r],
           s: [node.s],
-          opacity: isHovered ? [1] : [0.4],
+          opacity: isHovered ? [1] : [0.75],
           timing: { duration: 500, ease: easeCircleIn },
         };
       }}
