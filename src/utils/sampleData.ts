@@ -1,0 +1,105 @@
+import { PersonNode } from "./hexTypes";
+
+export const sampleData: PersonNode = {
+  type: "person",
+  title: "Amit Kumar",
+  children: [
+    {
+      type: "offering",
+      title: "1", //"Web Software Architect",
+    },
+    {
+      type: "offering",
+      title: "2", //"Engineering Leader",
+    },
+    {
+      type: "offering",
+      title: "3", //"Entrepreneur",
+    },
+    {
+      type: "offering",
+      title: "4",
+    },
+    {
+      type: "offering",
+      title: "5",
+    },
+    {
+      type: "offering",
+      title: "6",
+    },
+  ],
+};
+
+const skills = [
+  { title: "Kanban" },
+  { title: "REST APIs" },
+  { title: "Databases" },
+  { title: "Software Development" },
+  { title: "Entrepreneurship" },
+  { title: "Management" },
+  { title: "Leadership" },
+  { title: "TypeScript" },
+  { title: "Software Prototyping" },
+  { title: "Responsive Web Design" },
+  { title: "Product Management" },
+  { title: "Business Development" },
+  { title: "Operations Management" },
+  { title: "Product Design" },
+  { title: "Software Architecture" },
+  { title: "Design Systems" },
+  { title: "React.js" },
+  { title: "jQuery" },
+  { title: "CSS" },
+  { title: "HTML 5" },
+  { title: "JavaScript" },
+  { title: "Front-end" },
+  { title: "User Experience" },
+  { title: "Information Architecture" },
+  { title: "HTML" },
+  { title: "Node.js" },
+  { title: "Agile Methodologies" },
+  { title: "Git" },
+  { title: "SASS" },
+  { title: "Front-end Development" },
+  { title: "AngularJS" },
+  { title: "MongoDB" },
+  { title: "d3.js" },
+  { title: "mongoose.js" },
+  { title: "Object Oriented Design" },
+  { title: "Database Design" },
+  { title: "Open Source" },
+  { title: "Continuous Integration" },
+  { title: "Test Driven Development" },
+  { title: "REST" },
+  { title: "API Development" },
+  { title: "Project Management" },
+  { title: "Software Architectural Design" },
+  { title: "CMS" },
+  { title: "ADA Compliance" },
+  { title: "HTML5" },
+  { title: "Web Development" },
+  { title: "Web Applications" },
+  { title: "Usability" },
+  { title: "SQL" },
+];
+export const offerings = [
+  {
+    title: "Web Software Architect",
+    examples: [],
+  },
+  {
+    title: "Leadership",
+    examples: [
+      "Capitol.ai",
+      "Reciprocity Community",
+      "RTM",
+      "Bitponics",
+      "DigitasLBi",
+    ],
+  },
+  {
+    title: "Entrepreneur",
+    examples: ["Reciprocity Community", "Bitponics", "Stanford GSB"],
+  },
+];

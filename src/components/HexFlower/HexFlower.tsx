@@ -1,30 +1,20 @@
+import { CustomHexagon } from "@/components";
 import {
   AnimationState,
   CustomHexDirection,
-  CustomHexagon,
   DataNode,
   FlowerTransforms,
   Tile,
-} from "@/components";
-import { d3Interpolation, getRingNeighbor } from "@/utils";
-import {
-  easeCircleIn,
-  easeCircleInOut,
-  easeCircleOut,
-  easeCubicIn,
-  easeCubicOut,
-  easeQuadInOut,
-  easeQuadOut,
-  easeSinIn,
-  easeSinInOut,
-  easeSinOut,
-} from "d3-ease";
-import { CSSProperties, useState } from "react";
+  d3Interpolation,
+  getRingNeighbor,
+} from "@/utils";
+import { easeCircleIn, easeCircleOut, easeSinIn, easeSinOut } from "d3-ease";
+import { schemeSet2 } from "d3-scale-chromatic";
+import { CSSProperties, useRef, useState } from "react";
+import { useButton, useHover } from "react-aria";
 import { Hex, Text } from "react-hexgrid";
 import { Animate, NodeGroup } from "react-move";
 import styles from "./HexFlower.module.css";
-import { useHover } from "react-aria";
-import { schemeSet2, interpolateSinebow } from "d3-scale-chromatic";
 
 export interface HexFlowerProps {
   data: DataNode;
@@ -48,6 +38,14 @@ export const HexFlower = ({
   data: { title, children = [] },
 }: HexFlowerProps) => {
   const [petals, setPetals] = useState<Array<Tile>>([]);
+  const ref = useRef<SVGGElement>(null);
+  const { buttonProps, isPressed } = useButton(
+    {
+      elementType: "g",
+    },
+    ref
+  );
+
   const { hoverProps, isHovered } = useHover({
     onHoverStart: () => {
       setPetals(getPetals(originHex, children));
@@ -90,7 +88,7 @@ export const HexFlower = ({
     >
       {(state) => {
         return (
-          <g {...hoverProps}>
+          <g {...hoverProps} ref={ref}>
             <CustomHexagon
               q={state.q}
               r={state.r}

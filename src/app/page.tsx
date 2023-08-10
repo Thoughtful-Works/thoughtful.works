@@ -1,6 +1,7 @@
 "use client";
 
-import { HexFlower, sampleData } from "@/components";
+import { HexFlower } from "@/components";
+import { sampleData } from "@/utils";
 import { useEffect, useState } from "react";
 import { Hex, HexGrid, Layout } from "react-hexgrid";
 import styles from "./page.module.css";
@@ -34,7 +35,7 @@ export default function Home() {
         >
           <Layout
             size={{ x: 12, y: 12 }}
-            spacing={1}
+            spacing={1.05}
             origin={{ x: 0, y: 0 }}
             flat={false}
           >
